@@ -9,7 +9,7 @@ bashCommand = "alpr " + str(img)
 
 class S(BaseHTTPRequestHandler):
     def do_POST(self):
-        if self.path == '/execute/moriarty':
+        if self.path == '/execute/tyrion':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
