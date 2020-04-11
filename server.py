@@ -1,5 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from watson_developer_cloud import VisualRecognitionV3 as vr
 import subprocess
 import logging
 
