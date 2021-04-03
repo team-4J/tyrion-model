@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import subprocess
 import logging
 
-port = 8084
+port = 8091
 img = "test.jpg"
 bashCommand = "alpr " + str(img)
 
@@ -15,11 +15,7 @@ class S(BaseHTTPRequestHandler):
 
             process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
             output, error = process.communicate()
-            result = output.decode("utf-8").split("-")[1]
-
-            plate_result = result.split(" ")[1].split("\t")[0]
-            score_result = result.split(" ")[3].split("\n")[0]
-            to_return = "{\"license_plate\": \"" + str(plate_result) + "\", \"score\": \"" + str(score_result) + "\"}"
+            to_return = "{\"license_plate\": \"" + str(output) + "\", \"score\": \"" + str(output) + "\"}"
 
             self.wfile.write(bytes(to_return, "utf-8"))
             logging.info(" [status:200] [license_plate:" + str(plate_result) + "] [score:" + str(score_result) + "]")
